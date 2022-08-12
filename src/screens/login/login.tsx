@@ -1,24 +1,10 @@
 import { Form, Input, Button } from "antd";
 import { useAuth } from "context/auth_context";
 
-//export const LoginScreen = () => {
-//    const login = (data: { username: string; password: string }) => {
-//        return fetch(`https://localhost:7006/api/Login`, {
-//            method: "POST",
-//            headers: {
-//                "Content-Type": "application/json",
-//            },
-//            body: JSON.stringify(data),
-//        }).then(async (response: Response) => {
-//            if (response.ok) {
-//                console.log("登入成功")
-//            }
-//        });
-//    };
 export const LoginScreen = () => {
   const { login, user } = useAuth();
 
-  const handelSubmit = (value: { username: string; password: string }) => {
+  const handelSubmit = (value: { user_id: string; password: string }) => {
     login(value);
   };
 

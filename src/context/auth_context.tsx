@@ -2,11 +2,11 @@ import { createContext, ReactNode, useContext, useState } from "react";
 import * as auth from "../auth-provider";
 
 interface AuthForm {
-  username: string;
+  user_id: string;
   password: string;
 }
 interface RegisterForm {
-  username: string;
+  user_id: string;
   password: string;
   Email: string;
 }

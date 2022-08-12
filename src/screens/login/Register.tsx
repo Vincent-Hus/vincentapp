@@ -1,7 +1,7 @@
 import { Form, Input, Button } from "antd";
 
 export const RegisterScreen = () => {
-  const register = (data: { username: string; password: string }) => {
+  const register = (data: { user_id: string; password: string }) => {
     return fetch(`https://localhost:7006/api/register`, {
       method: "POST",
       headers: {
@@ -15,7 +15,7 @@ export const RegisterScreen = () => {
     });
   };
 
-  const handelSubmit = (value: { username: string; password: string }) => {
+  const handelSubmit = (value: { user_id: string; password: string }) => {
     register(value);
   };
 
