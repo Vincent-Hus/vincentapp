@@ -1,32 +1,25 @@
 import { Form, Input, Button } from "antd";
+import { useAuth } from "context/auth_context";
 
 export const RegisterScreen = () => {
-  const register = (data: { user_id: string; password: string }) => {
-    return fetch(`https://localhost:7006/api/register`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    }).then(async (response: Response) => {
-      if (response.ok) {
-        console.log("註冊成功");
-      }
-    });
-  };
+  const { register } = useAuth();
 
-  const handelSubmit = (value: { user_id: string; password: string }) => {
+  const handelSubmit = (value: {
+    user_id: string;
+    password: string;
+    Email: string;
+  }) => {
     register(value);
   };
 
   return (
     <Form onFinish={handelSubmit}>
       <Form.Item
-        name="username"
+        name="user_id"
         rules={[{ required: true, message: "請輸入帳號" }]}
         wrapperCol={{ span: 8, offset: 8 }}
       >
-        <Input id={"username"} type="text" placeholder="帳號" />
+        <Input id={"user_id"} type="text" placeholder="帳號" />
       </Form.Item>
 
       <Form.Item
@@ -36,12 +29,12 @@ export const RegisterScreen = () => {
       >
         <Input.Password id={"password"} type="password" placeholder="密碼" />
       </Form.Item>
-      <Form.Item name="email">
+      <Form.Item name="Email" wrapperCol={{ span: 8, offset: 8 }}>
         <Input id={"Email"} type="email" placeholder="電子郵件"></Input>
       </Form.Item>
-      <Form.Item wrapperCol={{ offset: 11 }}>
+      <Form.Item wrapperCol={{ offset: 0 }}>
         <Button shape="round" size="large" htmlType="submit" type="primary">
-          登入
+          註冊
         </Button>
       </Form.Item>
     </Form>

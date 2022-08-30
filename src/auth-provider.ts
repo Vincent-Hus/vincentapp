@@ -1,14 +1,15 @@
 export interface User {
-  Useer_id: string;
-  Password: string;
-  Email: string;
-  Token: string;
+  user_id: string;
+  password: string;
+  email: string;
+  token: string;
 }
 const localStorageKey = "__auth_Provider_Token__";
+
 export const getToken = window.localStorage.getItem(localStorageKey);
 
 export const handelUserResponse = ({ user }: { user: User }) => {
-  window.localStorage.setItem(localStorageKey, user.Token || "");
+  window.localStorage.setItem(localStorageKey, user.token || "");
   return user;
 };
 
@@ -21,16 +22,14 @@ export const login = (data: { user_id: string; password: string }) => {
     body: JSON.stringify(data),
   }).then(async (response: Response) => {
     if (response.ok) {
-      console.log(JSON.stringify(data));
       return handelUserResponse(await response.json());
     } else {
-      console.log(JSON.stringify(data));
       return Promise.reject(data);
     }
   });
 };
 
-export const register = (data: {
+export const register = async (data: {
   user_id: string;
   password: string;
   Email?: string;
@@ -45,7 +44,7 @@ export const register = (data: {
     if (response.ok) {
       return handelUserResponse(await response.json());
     } else {
-      return Promise.reject(data);
+      return Promise.reject(await response.json());
     }
   });
 };
